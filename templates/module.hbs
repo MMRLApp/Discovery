@@ -1,0 +1,190 @@
+<div class="container-lg p-4">
+    <nav class="breadcrumb mb-3" aria-label="Breadcrumb">
+        <ol>
+            <li class="breadcrumb-item"><a href="{{basePath}}">Modules</a></li>
+            <li class="breadcrumb-item"><a href="{{basePath}}">{{repoId}}</a></li>
+            <li class="breadcrumb-item breadcrumb-item-selected">{{module.name}}</li>
+        </ol>
+    </nav>
+ </div>
+
+<div class="container-lg container-lg--no-pad-x">
+    <div class="Layout Layout--flowRow-until-md Layout--sidebarPosition-end Layout--sidebarPosition-flowRow-end">
+        <!-- Main Content -->
+        <div class="Layout-main">
+            <!-- App Store Style Header -->
+            <div class="app-header-container mb-3">
+                {{#if module.cover}}
+                <div class="app-cover">
+                    <img src="{{module.cover}}" alt="{{module.name}} cover" class="app-cover-img">
+                </div>
+                {{/if}}
+                <div class="app-info">
+                    <div class="app-info-main">
+                        {{#if module.icon}}
+                        <div class="app-icon">
+                            <img src="{{module.icon}}" alt="{{module.name}} icon">
+                        </div>
+                        {{else}}
+                        <div class="app-icon app-icon-default">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        {{/if}}
+                        <div class="app-info-text">
+                            <h1 class="app-title">{{module.name}}</h1>
+                            {{#if module.author}}
+                            <p class="app-author">{{module.author}}</p>
+                            {{/if}}
+                            {{#if module.description}}
+                            <p class="app-description">{{module.description}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="app-info-meta">
+                        {{#if module.version}}
+                        <div class="app-meta-item">
+                            <span class="app-meta-label">Version</span>
+                            <span class="app-meta-value">{{module.version}}</span>
+                        </div>
+                        {{/if}}
+                        {{#if module.versionCode}}
+                        <div class="app-meta-item">
+                            <span class="app-meta-label">Build</span>
+                            <span class="app-meta-value">{{module.versionCode}}</span>
+                        </div>
+                        {{/if}}
+                        <div class="app-meta-item">
+                            <span class="app-meta-label">Repository</span>
+                            <span class="app-meta-value">{{repoId}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- README -->
+            <div class="Box">
+                <div class="Box-header d-flex flex-justify-between flex-items-center">
+                    <h2 class="Box-title">
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5Z"></path>
+                        </svg>
+                        README.md
+                    </h2>
+                    <button id="readmeToggle" class="btn btn-sm" aria-label="Toggle README" aria-expanded="true">
+                        <svg class="octicon chevron-icon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="Box-body readme-content">
+                    <article class="markdown-body">
+                        {{{readmeHtml}}}
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+    <div class="Layout-sidebar">
+            <!-- Download & Releases -->
+            <div class="Box mb-3">
+                <div class="Box-body">
+                    {{#if module.zipUrl}}
+                    <a href="{{module.zipUrl}}" class="btn btn-primary btn-block mb-3" download>
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"></path>
+                            <path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"></path>
+                        </svg>
+                        Download Module
+                    </a>
+                    {{/if}}
+
+                    <a href="releases/" class="btn btn-block">
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="M2.5 1.75A.75.75 0 0 1 3.25 1h9.5a.75.75 0 0 1 0 1.5h-9.5A.75.75 0 0 1 2.5 1.75ZM1 4.75C1 4.336 1.336 4 1.75 4h12.5c.414 0 .75.336.75.75v9.5A1.75 1.75 0 0 1 13.25 16H2.75A1.75 1.75 0 0 1 1 14.25Z"></path>
+                        </svg>
+                        View all releases
+                    </a>
+                </div>
+            </div>
+
+            <div class="Box mb-3">
+                <div class="Box-header">
+                    <h3 class="Box-title">About</h3>
+                </div>
+                <div class="Box-body">
+                    <dl class="module-metadata">
+                        {{#if module.version}}
+                        <dt>
+                            <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                                <path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"></path>
+                            </svg>
+                            Version
+                        </dt>
+                        <dd><span class="Label Label--success">{{module.version}}</span></dd>
+                        {{/if}}
+
+                        {{#if module.author}}
+                        <dt>
+                            <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                                <path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
+                            </svg>
+                            Author
+                        </dt>
+                        <dd>{{module.author}}</dd>
+                        {{/if}}
+
+                        <dt>
+                            <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                                <path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path>
+                            </svg>
+                            Repository
+                        </dt>
+                        <dd><span class="Label">{{repoId}}</span></dd>
+
+                        {{#if module.versionCode}}
+                        <dt>
+                            <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                                <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
+                            </svg>
+                            Version Code
+                        </dt>
+                        <dd>{{module.versionCode}}</dd>
+                        {{/if}}
+                    </dl>
+
+                    {{#if module.support}}
+                    <hr class="my-3">
+                    <a href="{{module.support}}" class="btn btn-sm btn-block" target="_blank" rel="noopener">
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"></path>
+                        </svg>
+                        Get Support
+                    </a>
+                    {{/if}}
+
+                    {{#if module.donate}}
+                    <a href="{{module.donate}}" class="btn btn-sm btn-block mt-2" target="_blank" rel="noopener">
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                            <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+                        </svg>
+                        Sponsor
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+
+            {{#if module.note}}
+            <div class="p-4">
+                <div class="flash flash-warn">
+                    <strong>{{module.note.title}}</strong>
+                    <p>{{module.note.message}}</p>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

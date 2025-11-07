@@ -1,0 +1,50 @@
+<div class="container-lg container-lg--no-pad-x">
+    <div class="Box my-3">
+        <div class="Box-header">
+            <h2 class="Box-title">
+                <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                    <path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path>
+                </svg>
+                Modules
+                <span class="Counter">{{modules.length}}</span>
+            </h2>
+        </div>
+        <div class="Box-body">
+            <div id="moduleList" class="module-list">
+                {{#each modules}}
+                <a href="{{../basePath}}{{repoId}}/{{id}}" class="module-item">
+                    <div class="module-item-icon">
+                        {{#if icon}}
+                        <img src="{{icon}}" alt="{{name}}" class="module-list-icon">
+                        {{else}}
+                        <svg class="octicon" height="20" viewBox="0 0 16 16" width="20" fill="currentColor">
+                            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                        </svg>
+                        {{/if}}
+                    </div>
+                    <div class="module-item-content">
+                        <h3 class="module-item-title">{{name}}</h3>
+                        {{#if description}}
+                        <p class="module-item-description">{{description}}</p>
+                        {{/if}}
+                        <div class="module-item-meta">
+                            <span class="Label Label--secondary">{{repoId}}</span>
+                            {{#if version}}
+                            <span class="Label Label--success">{{version}}</span>
+                            {{/if}}
+                            {{#if author}}
+                            <span class="text-small text-secondary">
+                                <svg class="octicon" height="12" viewBox="0 0 16 16" width="12" fill="currentColor">
+                                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"></path>
+                                </svg>
+                                {{author}}
+                            </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container-lg p-4">
+  <nav class="breadcrumb mb-3" aria-label="Breadcrumb">
+    <ol>
+      <li class="breadcrumb-item"><a href="{{basePath}}">Modules</a></li>
+      <li class="breadcrumb-item"><a href="{{basePath}}">{{repoId}}</a></li>
+      <li class="breadcrumb-item"><a href="{{basePath}}{{repoId}}/{{module.id}}/">{{module.name}}</a></li>
+      <li class="breadcrumb-item breadcrumb-item-selected">Releases</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-lg container-lg--no-pad-x">
+  <div class="Layout Layout--flowRow-until-md Layout--sidebarPosition-end Layout--sidebarPosition-flowRow-end">
+    <div class="Layout-main">
+      <div class="Box mb-3">
+        <div class="Box-header d-flex flex-justify-between flex-items-center">
+          <h2 class="Box-title">
+            <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+              <path d="M7.775 1a1.75 1.75 0 0 1 1.238.513l5.474 5.474a1.75 1.75 0 0 1 0 2.475l-4.26 4.26A1.75 1.75 0 0 1 9.525 15H2.75A1.75 1.75 0 0 1 1 13.25V4.5C1 3.119 2.119 2 3.5 2h3.275Z"></path>
+            </svg>
+            Releases
+          </h2>
+          <a class="btn btn-sm" href="{{basePath}}{{repoId}}/{{module.id}}/">Back to module</a>
+        </div>
+        <div class="Box-body">
+          {{#if releases.length}}
+            {{#each releases}}
+              <div class="Box mb-3">
+                <div class="Box-header d-flex flex-justify-between flex-items-start">
+                  <div>
+                    <h3 class="Box-title">v{{version}} {{#if versionCode}}<span class="Label">build {{versionCode}}</span>{{/if}}</h3>
+                    {{#if date}}
+                      <div class="text-small text-secondary">{{date}}</div>
+                    {{/if}}
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm toggle-button release-toggle" aria-expanded="false" aria-controls="releaseChangelog-{{@index}}" title="Toggle changelog">
+                      <svg class="octicon chevron-icon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                        <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path>
+                      </svg>
+                    </button>
+                    {{#if zipUrl}}
+                      <a class="btn btn-sm btn-primary" href="{{zipUrl}}" download>
+                        <svg class="octicon" height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+                          <path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"></path>
+                          <path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"></path>
+                        </svg>
+                        Download
+                      </a>
+                    {{/if}}
+                  </div>
+                </div>
+                <div class="Box-body">
+                  {{#if changelogHtml}}
+                    <div id="releaseChangelog-{{@index}}" class="readme-content release-changelog">
+                      <article class="markdown-body">{{{changelogHtml}}}</article>
+                    </div>
+                  {{else}}
+                    <p class="text-small text-secondary">No changelog provided.</p>
+                  {{/if}}
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="flash">No releases found for this module.</div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
+    <div class="Layout-sidebar">
+      <div class="Box mb-3">
+        <div class="Box-body">
+          <a class="btn btn-block" href="{{basePath}}{{repoId}}/{{module.id}}/">Back to {{module.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
