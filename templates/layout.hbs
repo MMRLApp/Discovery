@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+    
+    <!-- Meta Tags -->
+    {{#if description}}
+    <meta name="description" content="{{description}}">
+    {{/if}}
+    {{#if author}}
+    <meta name="author" content="{{author}}">
+    {{/if}}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{{#if ogType}}{{ogType}}{{else}}website{{/if}}">
+    <meta property="og:title" content="{{title}}">
+    {{#if description}}
+    <meta property="og:description" content="{{description}}">
+    {{/if}}
+    {{#if ogImage}}
+    <meta property="og:image" content="{{ogImage}}">
+    {{/if}}
+    {{#if ogUrl}}
+    <meta property="og:url" content="{{ogUrl}}">
+    {{/if}}
+    <meta property="og:site_name" content="MMRL">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{#if twitterCard}}{{twitterCard}}{{else}}summary_large_image{{/if}}">
+    <meta name="twitter:title" content="{{title}}">
+    {{#if description}}
+    <meta name="twitter:description" content="{{description}}">
+    {{/if}}
+    {{#if ogImage}}
+    <meta name="twitter:image" content="{{ogImage}}">
+    {{/if}}
+    
     <link rel="stylesheet" href="{{basePath}}assets/github-style.css">
     <link rel="stylesheet" href="{{basePath}}assets/highlight.css">
 </head>

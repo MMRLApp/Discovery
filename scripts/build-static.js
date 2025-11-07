@@ -183,6 +183,8 @@ async function build() {
 
   const indexHtml = layoutTemplate({
     title: "MMRL",
+    description: "Explore MMRL modules - A comprehensive module explorer for Magisk, KernelSU and APatch",
+    ogType: "website",
     content: indexContent,
     showSearch: true,
     basePath: "./",
@@ -251,8 +253,19 @@ async function build() {
         basePath: "../../",
       });
 
+      // Prepare meta tags for module page
+      const moduleDescription = module.description || `Explore ${module.name} module for MMRL`;
+      const moduleImage = module.cover || module.icon || '';
+      const moduleAuthor = module.author || '';
+      
       const moduleHtml = layoutTemplate({
         title: `${module.name} - MMRL`,
+        description: moduleDescription,
+        author: moduleAuthor,
+        ogType: 'article',
+        ogImage: moduleImage,
+        ogUrl: '', // Can be set if you have a base URL in config
+        twitterCard: moduleImage ? 'summary_large_image' : 'summary',
         content: moduleContent,
         showSearch: false,
         basePath: "../../",
@@ -314,6 +327,10 @@ async function build() {
 
       const releasesHtml = layoutTemplate({
         title: `${module.name} Releases - MMRL`,
+        description: `View all releases and changelogs for ${module.name}`,
+        author: module.author || '',
+        ogType: 'article',
+        ogImage: module.cover || module.icon || '',
         content: releasesContent,
         showSearch: false,
         basePath: "../../../",
